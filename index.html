@@ -1,94 +1,329 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GESTIÓN SALIDAS | IPEM 146</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        GESTIÓN SALIDAS | IPEM 146
+    </title>
+
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="style.css">
+
 </head>
+
 <body>
+
+    <!-- ========================= -->
+    <!-- LOADER -->
+    <!-- ========================= -->
+
     <div id="loader">
+
         <div class="spinner"></div>
-        <p>Cargando sistema...</p>
+
+        <p>
+            Cargando sistema...
+        </p>
+
     </div>
+
+    <!-- ========================= -->
+    <!-- TOAST -->
+    <!-- ========================= -->
 
     <div id="toast-container"></div>
-    
+
+    <!-- ========================= -->
+    <!-- CONTENEDOR -->
+    <!-- ========================= -->
+
     <div class="container">
+
+        <!-- ========================= -->
+        <!-- HEADER -->
+        <!-- ========================= -->
+
         <header>
+
             <div class="header-top">
-                <h1>📊 GESTIÓN SALIDAS <span>IPEM 146 "CENTENARIO"</span></h1>
-                <div class="header-buttons">
-                    <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()">🌙</button>
-                    <button id="logoutBtn" class="logout-btn" onclick="cerrarSesion()" style="display:none;">🚪</button>
+
+                <div class="titulo-box">
+
+                    <h1>
+                        📊 GESTIÓN SALIDAS
+                    </h1>
+
+                    <span>
+                        IPEM 146 "CENTENARIO"
+                    </span>
+
                 </div>
+
+                <div class="header-buttons">
+
+                    <!-- TEMA -->
+                    <button id="themeToggle"
+                            class="theme-toggle"
+                            onclick="toggleTheme()"
+                            title="Cambiar tema">
+
+                        🌙
+
+                    </button>
+
+                    <!-- LOGOUT -->
+                    <button id="logoutBtn"
+                            class="logout-btn"
+                            onclick="cerrarSesion()"
+                            style="display:none;"
+                            title="Cerrar sesión">
+
+                        🚪
+
+                    </button>
+
+                </div>
+
             </div>
+
         </header>
 
-        <div class="panel">
-            <div class="grupo-sesion">
-                <h3>🔑 ACCESO AL PERSONAL</h3>
-                <div class="controles">
-                    <select id="docentes">
-                        <option value="">Seleccione Usuario...</option>
-                    </select>
-                    <div class="password-box">
-                        <input type="password" id="passDocente" placeholder="PIN">
-                        <button class="toggle-pass" onclick="togglePassword()">👁</button>
-                    </div>
-                    <button class="btn-main" id="btnLogin" onclick="verificarAcceso()">ENTRAR</button>
-                </div>
+        <!-- ========================= -->
+        <!-- LOGIN -->
+        <!-- ========================= -->
+
+        <section class="panel grupo-sesion">
+
+            <h3>
+                🔑 ACCESO AL PERSONAL
+            </h3>
+
+            <div class="controles">
+
+                <!-- DOCENTE -->
+                <select id="docentes">
+
+                    <option value="">
+                        Seleccione Usuario...
+                    </option>
+
+                </select>
+
+                <!-- PIN -->
+                <input type="password"
+                       id="passDocente"
+                       placeholder="PIN"
+                       autocomplete="off">
+
+                <!-- BOTÓN -->
+                <button id="btnLogin"
+                        class="btn-main"
+                        onclick="verificarAcceso()">
+
+                    ENTRAR
+
+                </button>
+
             </div>
 
-            <div id="seccion-filtros" style="display:none;">
-                <div class="filtros">
-                    <select id="fCurso"></select>
-                    <select id="fDivision"></select>
-                    <select id="fTurno"></select>
-                    <select id="fEspecialidad"></select>
-                </div>
-                <div class="destino-container">
-                    <label>📍 DESTINO REQUERIDO:</label>
-                    <select id="causa">
-                        <option value="">-- SELECCIONAR DESTINO --</option>
-                        <option value="Baño">🚻 Baño (Máx 15 min)</option>
-                        <option value="Dirección">🏫 Dirección</option>
-                        <option value="Preceptoría">📁 Preceptoría</option>
-                        <option value="Biblioteca">📚 Biblioteca</option>
-                        <option value="Kiosco">🍎 Kiosco</option>
-                    </select>
-                </div>
+        </section>
+
+        <!-- ========================= -->
+        <!-- FILTROS -->
+        <!-- ========================= -->
+
+        <section id="seccion-filtros"
+                 class="panel"
+                 style="display:none;">
+
+            <div class="filtros">
+
+                <select id="fCurso"></select>
+
+                <select id="fDivision"></select>
+
+                <select id="fTurno"></select>
+
+                <select id="fEspecialidad"></select>
+
             </div>
-        </div>
 
-        <div id="status-container" style="display:none;">
-            <div id="status">ROL: <strong id="user-role"></strong></div>
-        </div>
+            <!-- DESTINO -->
 
-        <div id="contador-container" style="display:none;">
+            <div class="destino-container">
+
+                <label for="causa">
+                    📍 DESTINO REQUERIDO
+                </label>
+
+                <select id="causa">
+
+                    <option value="">
+                        -- SELECCIONAR DESTINO --
+                    </option>
+
+                    <option value="Baño">
+                        🚻 Baño (Máx 15 min)
+                    </option>
+
+                    <option value="Dirección">
+                        🏫 Dirección
+                    </option>
+
+                    <option value="Preceptoría">
+                        📁 Preceptoría
+                    </option>
+
+                    <option value="Biblioteca">
+                        📚 Biblioteca
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+        <!-- ========================= -->
+        <!-- CONTADORES -->
+        <!-- ========================= -->
+
+        <section id="contador-container"
+                 style="display:none;">
+
             <div class="contador-box">
-                <div class="contador-item total">TOTAL <strong id="total-alumnos">0</strong></div>
-                <div class="contador-item aula">EN AULA <strong id="en-aula">0</strong></div>
-                <div class="contador-item salida">AFUERA <strong id="afuera">0</strong></div>
-                <div class="contador-item ausente">AUSENTES <strong id="ausentes">0</strong></div>
+
+                <div class="contador-item total">
+
+                    TOTAL
+
+                    <strong id="total-alumnos">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="contador-item aula">
+
+                    EN AULA
+
+                    <strong id="en-aula">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="contador-item salida">
+
+                    AFUERA
+
+                    <strong id="afuera">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="contador-item ausente">
+
+                    AUSENTES
+
+                    <strong id="ausentes">
+                        0
+                    </strong>
+
+                </div>
+
             </div>
-        </div>
 
-        <div id="buscador-box" style="display:none;">
-            <input type="text" id="buscador" placeholder="🔍 Buscar alumno..." oninput="render()">
-        </div>
+        </section>
 
-        <div id="grid"></div>
+        <!-- ========================= -->
+        <!-- BUSCADOR -->
+        <!-- ========================= -->
 
-        <div id="historial-container" style="display:none;">
+        <section id="buscador-box"
+                 class="panel"
+                 style="display:none;">
+
+            <input type="text"
+                   id="buscador"
+                   placeholder="🔍 Buscar por nombre o DNI..."
+                   autocomplete="off"
+                   oninput="render()">
+
+        </section>
+
+        <!-- ========================= -->
+        <!-- GRID -->
+        <!-- ========================= -->
+
+        <main id="grid"></main>
+
+        <!-- ========================= -->
+        <!-- HISTORIAL -->
+        <!-- ========================= -->
+
+        <section id="historial-container"
+                 class="panel"
+                 style="display:none;">
+
             <div class="historial-top">
-                <h2>📋 MOVIMIENTOS</h2>
-                <button class="btn-clear" onclick="limpiarHistorial()">🗑</button>
+
+                <h2>
+                    📋 MOVIMIENTOS RECIENTES
+                </h2>
+
+                <button class="btn-clear"
+                        onclick="limpiarHistorial()">
+
+                    🗑
+
+                </button>
+
             </div>
+
             <div id="historial"></div>
-        </div>
+
+        </section>
+
     </div>
+
+    <!-- ========================= -->
+    <!-- AUDIO ALERTA -->
+    <!-- ========================= -->
+
+    <audio id="alertSound"
+           preload="auto">
+
+        <source src="alert.mp3"
+                type="audio/mpeg">
+
+    </audio>
+
+    <!-- ========================= -->
+    <!-- SCRIPT -->
+    <!-- ========================= -->
+
     <script src="app.js"></script>
+
 </body>
+
 </html>
