@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -77,6 +78,10 @@
 
                 </div>
 
+                    <div id="rolActivo" class="rol-box" style="display:block;">
+                        <!-- Usuario activo se mostrará aquí -->
+                    </div>
+
                 <div class="header-buttons">
 
                     <!-- TEMA -->
@@ -97,6 +102,16 @@
                             title="Cerrar sesión">
 
                         🚪
+
+                    </button>
+
+                    <button id="changePassBtn"
+                            class="theme-toggle"
+                            onclick="cambiarPassword()"
+                            style="display:none;"
+                            title="Cambiar contraseña">
+
+                        🔐
 
                     </button>
 
@@ -295,6 +310,15 @@
                         onclick="limpiarHistorial()">
 
                     🗑
+
+                </button>
+
+                <button class="theme-toggle"
+                        style="margin-left:8px;"
+                        onclick="exportHistorialPDF()"
+                        title="Exportar PDF">
+
+                    📄
 
                 </button>
 
